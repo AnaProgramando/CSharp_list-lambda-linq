@@ -116,3 +116,7 @@ C:\Users\anabv\Documents\Programacao\CSharp\CSharp_array-tipo-generico\CSharp.Ba
 C:\Users\anabv\Documents\Programacao\CSharp\CSharp_array-tipo-generico\CSharp.BancoVirtual.SistemaAgencia\obj\Debug\CSharp.BancoVirtual.SistemaAgencia.csproj.CopyComplete
 C:\Users\anabv\Documents\Programacao\CSharp\CSharp_array-tipo-generico\CSharp.BancoVirtual.SistemaAgencia\obj\Debug\CSharp.BancoVirtual.SistemaAgencia.exe
 C:\Users\anabv\Documents\Programacao\CSharp\CSharp_array-tipo-generico\CSharp.BancoVirtual.SistemaAgencia\obj\Debug\CSharp.BancoVirtual.SistemaAgencia.pdb
+C:\Users\anabv\Documents\Programacao\CSharp\CSharp_list-lambda-linq\CSharp.BancoVirtual.SistemaAgencia\obj\Debug\CSharp.BancoVirtual.SistemaAgencia.csproj.AssemblyReference.cache
+C:\Users\anabv\Documents\Programacao\CSharp\CSharp_list-lambda-linq\CSharp.BancoVirtual.SistemaAgencia\obj\Debug\CSharp.BancoVirtual.SistemaAgencia.csproj.CoreCompileInputs.cache
+C:\Users\anabv\Documents\Programacao\CSharp\CSharp_list-lambda-linq\CSharp.BancoVirtual.SistemaAgencia\obj\Debug\CSharp.BancoVirtual.SistemaAgencia.exe
+C:\Users\anabv\Documents\Programacao\CSharp\CSharp_list-lambda-linq\CSharp.BancoVirtual.SistemaAgencia\obj\Debug\CSharp.BancoVirtual.SistemaAgencia.pdb
