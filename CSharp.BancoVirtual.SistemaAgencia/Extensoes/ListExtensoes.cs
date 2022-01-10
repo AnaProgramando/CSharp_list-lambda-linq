@@ -11,7 +11,7 @@ namespace CSharp.BancoVirtual.SistemaAgencia.Extensoes
     // static, pois somente armazenará extensões, não possuirá estado e nem será instanciada
     // Tornando o método genérico, definindo o tipo genérico na classe com o <T>
 
-    // public static class ListExtensoes<T>
+    // A classe não será mais genérica: public static class ListExtensoes<T>
     public static class ListExtensoes
     {
         // Coletar (varrendo) todos os elementos do array itens e adicionando cada um à listaDeInteiros
@@ -29,7 +29,9 @@ namespace CSharp.BancoVirtual.SistemaAgencia.Extensoes
 
         // Ao utilizar um método de extensão é necessário inserir o this no começo do primeiro argumento
         // public static void AdicionarVarios(this List<T> lista, params T[] itens) - Vou remover o this para não aparecer que se trata de um método de extensão
-        public static void AdicionarVarios(List<T> lista, params T[] itens)
+        // Tornando o método genérico adicionando o <T>, sendo o "T" uma convenção para nomear o tipo de argumento genérico
+        // É possível ter um método genérico dentro de uma classe normal
+        public static void AdicionarVarios<T>(List<T> lista, params T[] itens)
         {
             // foreach() não traz o índice, mas não é necessário aqui
             // Varrendo item por item, atribuindo uma ação para cada um deles
@@ -42,9 +44,20 @@ namespace CSharp.BancoVirtual.SistemaAgencia.Extensoes
             }
         }
 
+        // ----------------------------------------------------------------------------------------------
+
+        // Teste de sintaxe
+        // Argumento genérico T2
+        // Método de extensão de string
+        public static void TesteGenerico<T2>(this string texto)
+        {
+
+        }
+
+        // ----------------------------------------------------------------------------------------------
+
         static void Teste()
         {
-            // ----------------------------------------------------------------------------------------------
             // Chamando o método e testando sintaxe
 
             // Em função da definição na classe, é necessário sempre escrever o nome dela e informar ao compilador qual tipo utilizado na classe genérica
@@ -60,7 +73,23 @@ namespace CSharp.BancoVirtual.SistemaAgencia.Extensoes
             // Chamando o método AdicionarVarios
             // (o primeiro argumento é uma lista de inteiros, o segundo argumento é um array params de inteiros)
             // O método recebe uma lista do respectivo tipo definido como argumento, ou seja, uma lista de inteiros
-            ListExtensoes<int>.AdicionarVarios(idades, 2, 4, 6);
+            // A chamada abaixo deixou de fazer sentido quando a classe ListExtensoes deixou de ser genérica
+            // ListExtensoes<int>.AdicionarVarios(idades, 2, 4, 6);
+
+            // Chamando o AdicionarVarios que é um método genérico, então é necessário colocar o tipo
+            // Não é preciso escrever AdicionarVarios<int>, pois o tipo genérico T do método (AdicionarVarios<T>), é o mesmo tipo T da lista (List<T> lista), logo o compilador entende que o AdicionarVarios abaixo vai virar o AdicionarVarios de tipo genérico de int
+            // () - Não é necessário preencher exatamanete o primeiro argumento, porque o primeiro argumento de um método de extensão é o objeto, a referência que está sendo extendida, no caso o "idades", então basta preencher os próximos argumentos, no caso as idades
+            // idades.AdicionarVarios(33, 66, 88, 99);
+
+            // -------------------------------------
+
+            // TesteGenerico
+
+            string ana = "Ana";
+
+            // O TesteGenerico é um método genérico, então é necessário preencher o argumento genérico
+            // É necessário preencher como <int>, pois a string não é uma classe genérica ( TesteGenerico<T2>(this string texto) ), logo ela não trará nehuma informação para o compilador que o tipo genérico da classe é o mesmo tipo genérico do método
+            ana.TesteGenerico<int>();
 
             // -------------------------------------
 
@@ -76,14 +105,14 @@ namespace CSharp.BancoVirtual.SistemaAgencia.Extensoes
             // O argumento List<T> é um List string
             // Chamando o AdicionarVarios com uma lista de string com os nomes
             // O mesmo para AdicionarVarios() recebe string como argumento, pois o compilador sabe que esse método aguarda esse tipo que foi definido em ListExtensoes<string>
-            ListExtensoes<string>.AdicionarVarios(nomes, "Fulano", "Beltrano");
+            // A chamada abaixo deixou de fazer sentido quando a classe ListExtensoes deixou de ser genérica
+            // ListExtensoes<string>.AdicionarVarios(nomes, "Fulano", "Beltrano");
 
             // A ideia do método de extensão é que não seja necessário utilizar o nome de classe para fazer as chamadas de AdicionarVarios(), e fazer com que AdicionarVarios() pareça o método da respectiva classe
             // Aqui o argumento string é carregado pelo nome da classe(ListExtensoes<string>), mas da forma abaixo, a informação não é passada, e o código não é compilado, deixando AdicionarVarios() sublinhado em vermelho
             // Assim ao tentar criar um método de extensão em uma classe estática, o compilador apontará erro na declaração da classe
             // Se o método de extensão AdicionarVarios() estivesse em uma classe genérica, a chamada dele dependeria dessa classe, com o tipo especificado, logo não teria sentido utilizar a sintaxe de método de extensão, por isso deletei <T> da declaração da classe ListExtensoes na linha 15, porém o compilador não saberá mais ao que o tipo <T> de List<T> e do array T[] se refere
-            // 
-            nomes.AdicionarVarios("Sicrano", "Fulana");
+            // nomes.AdicionarVarios("Sicrano", "Fulana");
         }
     }
 }
