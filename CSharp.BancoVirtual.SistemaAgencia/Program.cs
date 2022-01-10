@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CSharp.BancoVirtual.Modelos;
 using CSharp.BancoVirtual.Modelos.Funcionarios;
 using Humanizer;
+using CSharp.BancoVirtual.SistemaAgencia.Extensoes;
 
 namespace CSharp.BancoVirtual.SistemaAgencia
 {
@@ -26,6 +27,50 @@ namespace CSharp.BancoVirtual.SistemaAgencia
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("_Teste de var - Chamando construtor da classe_");
+            //ContaCorrente conta = new ContaCorrente(123, 12345678);
+            //GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
+            //List<GerenciadorBonificacao> gerenciadores = new List<GerenciadorBonificacao>();
+
+            // Com o var é como dizer ao compilador que desejo armazenar o nome do tipo que há na expressão da atribuição no var
+            // O compilador entende que "var" refere-se ao tipo atribuído, encontrado à direita do sinal de igual(=)
+            // Usar o var deixa o código mais elegante, mais legível e sem repetição de nome de classe (inclusive das genéricas), que possuem nomes mais complicados
+            var conta = new ContaCorrente(123, 12345678);
+            var gerenciador = new GerenciadorBonificacao();
+            var gerenciadores = new List<GerenciadorBonificacao>();
+
+            conta.Depositar(321);
+
+            Console.WriteLine(conta);
+
+            Console.ReadLine();
+
+            // ----------------------------------------------------------------------------------------------
+
+            Console.WriteLine("_Teste de var - Com outro método_");
+
+            var resultado = SomarVarios(2, 4, 6);
+
+            Console.WriteLine("Teste de somar vários: " + resultado);
+
+            Console.ReadLine();
+
+            // ----------------------------------------------------------------------------------------------
+
+            Console.WriteLine("_Teste de var - Literais da linguagem_");
+
+            // É o mesmo que:    int numIdade = 12;
+            var numIdade = 12;           
+            Console.WriteLine("Teste de var para int: " + numIdade);
+
+            // É o mesmo que:    string nomeTeste = "Nome Teste";
+            var nomeTeste = "Nome Teste";
+            Console.WriteLine("Teste de var para srting: " + nomeTeste);
+
+            Console.ReadLine();
+
+            // ----------------------------------------------------------------------------------------------
+
             // Classe genérica List permite o uso do int como argumento genérico
             List<int> idades = new List<int>();
 
@@ -54,10 +99,12 @@ namespace CSharp.BancoVirtual.SistemaAgencia
             // AdicionarVarios() não é um método do tipo List<T> do .NET
             // AdicionarVarios() é um método de extensão criado em ListExtensoes.cs onde é indicada a extensão do tipo List<T> por meio da palavra reservada this antes do primeiro argumento
 
-            idades.AdicionarVarios(10, 20, 30, 40);
+            // idades.AdicionarVarios(10, 20, 30, 40);
             // Ao escrever a referência idades, seguida por AdicionarVarios() com seus argumentos, o compilador tranformará esses dados na chamada para o método estático
             // No argumento, será constatado this, logo nesse caso será colocada a referência usada (idades) como primeiro argumento e os números copiados e colados na sequência:
             // ListExtensoes.AdicionarVarios(idades, 10, 20, 30, 40); --> Como na linha 45
+
+            // idades.AdicionarVarios(idades, 10, 20, 30, 40);
 
             // Tamanho é o Count, propriedade do .NET responsável pela contagem de itens que compõem a lista
             for (int i = 0; i < idades.Count; i++)
