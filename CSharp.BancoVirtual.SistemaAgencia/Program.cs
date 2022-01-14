@@ -8,6 +8,7 @@ using CSharp.BancoVirtual.Modelos;
 using CSharp.BancoVirtual.Modelos.Funcionarios;
 using CSharp.BancoVirtual.SistemaAgencia;
 using CSharp.BancoVirtual.SistemaAgencia.Extensoes;
+using CSharp.BancoVirtual.SistemaAgencia.Comparadores;
 
 namespace CSharp.BancoVirtual.SistemaAgencia
 {
@@ -20,10 +21,14 @@ namespace CSharp.BancoVirtual.SistemaAgencia
                 new ContaCorrente(123, 12341),
                 new ContaCorrente(123, 12342),
                 new ContaCorrente(123, 12343),
-                new ContaCorrente(123, 12344)
+                new ContaCorrente(123, 12343),
+                new ContaCorrente(123, 1),
+                new ContaCorrente(123, 99999)
             };
 
-            contas.Sort();
+            // contas.Sort();   => Chamar a implementação dada em IComparable
+
+            contas.Sort(new ComparadorContaCorrentePorAgencia());
 
             foreach (var conta in contas)
             {
