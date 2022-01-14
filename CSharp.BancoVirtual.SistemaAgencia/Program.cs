@@ -107,18 +107,18 @@ namespace CSharp.BancoVirtual.SistemaAgencia
 
             // Ordenando a lista de nomes
             nomes.Sort();
-        
-                    foreach (var nome in nomes)
-                    {
-                        Console.WriteLine(nome);
-                    }
+
+            foreach (var nome in nomes)
+            {
+                Console.WriteLine(nome);
+            }
 
             // ----------------------------------------------------------------------------------------------
-            
+
             // Classe genérica List permite o uso do int como argumento genérico
             // Alterado de: List<int> idades = new List<int>(); | Para: var idades = new List<int>();
             var idades = new List<int>();
-            
+
             // É criada uma lista genérica com método genérico que espera um argumento de tipo genérico
             // Add é o Adicionar
             idades.Add(2);
@@ -127,39 +127,39 @@ namespace CSharp.BancoVirtual.SistemaAgencia
             idades.Add(8);
             idades.Add(10);
             idades.Add(12);
-            
+
             // Remover o idades.Add(4)
             // idades.Remove(4);
-            
+
             // Array de int utilizando a sintaxe de inicialização de array na qual não é necessário se preocupar com o número inicial de elementos, nem     com a     adição de item por item no array
             // idades.AddRange(new int[] { 1, 2, 3, 9 });
-            
+
             // Facilitando o que foi feito com o AddRange, definindo idades sem a preocupação com a sinaxe de criar array, passar os índices e colocar      colchetes    ([])
             // ListExtensoes.AdicionarVarios(idades, 10, 20, 30, 40);
-            
+
             // Otimizando o AdicionarVarios
             // Em ListExtensoes.cs o primeiro argumento de AdicionarVarios() é a listaDeInteiros, porém ela é o método que representa a classe  estendendida,    logo   está implícito o argumento utilizado, o idades
             // Assim basta preencher a partir do segundo argumento,o params int[] itens
             // Adicionando as idades como argumento de AdicionarVarios()
             // AdicionarVarios() não é um método do tipo List<T> do .NET
             // AdicionarVarios() é um método de extensão criado em ListExtensoes.cs onde é indicada a extensão do tipo List<T> por meio da palavra  reservada    this   antes do primeiro argumento
-            
+
             // idades.AdicionarVarios(10, 20, 30, 40);
             // Ao escrever a referência idades, seguida por AdicionarVarios() com seus argumentos, o compilador tranformará esses dados na chamada para o     método    estático
             // No argumento, será constatado this, logo nesse caso será colocada a referência usada (idades) como primeiro argumento e os números copiados   e      colados na sequência:
             // ListExtensoes.AdicionarVarios(idades, 10, 20, 30, 40); --> Como na linha 45
-            
+
             ListExtensoes.AdicionarVarios(idades, 20, 30, 40);
-            
+
             // idades.AdicionarVarios(99, -1);
-            
+
             // ----------------------------------------------------------------------------------------------
-            
+
             // _Teste do Sort() - Números_
-            
+
             // Ordenando a lista de idades
             idades.Sort();
-            
+
             // Tamanho é o Count, propriedade do .NET responsável pela contagem de itens que compõem a lista
             for (int i = 0; i < idades.Count; i++)
             {
