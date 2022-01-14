@@ -2,32 +2,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Humanizer;
 using System.Threading.Tasks;
 using CSharp.BancoVirtual.Modelos;
 using CSharp.BancoVirtual.Modelos.Funcionarios;
-using Humanizer;
+using CSharp.BancoVirtual.SistemaAgencia;
 using CSharp.BancoVirtual.SistemaAgencia.Extensoes;
 
 namespace CSharp.BancoVirtual.SistemaAgencia
 {
-    // Garantindo que o método AdicionarVarios() seja acessado a partir da referência de uma lista, criando uma classe derivada do tipo List.cs e implementando nela o AdicionarVarios()
-    // Derivando uma classe de List<int>, implementando AdicionarVarios(), estabelecendo params como argumento e chamando Add() no escopo, que foi definido em List<int>
-    // Nesse caso de um método pontual, não é necessário criar uma classe derivada para estender o tipo List<T>, posto que em MinhaListaExtendida, somente é gerada uma classe que deriva de List<int>, para compor métodos auxiliares
-    // Resolvido em ListExtensoes.cs
-
-    //public class MinhaListaExtendida : List<int>
-    //{
-    //    public void AdicionarVarios(params int[] itens)
-    //    {
-    //        Add(1);
-    //    }
-    //}
-
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("_Teste de var - Chamando construtor da classe_");
+            var contas = new List<ContaCorrente>()
+            {
+                new ContaCorrente(123, 12341),
+                new ContaCorrente(123, 12342),
+                new ContaCorrente(123, 12343),
+                new ContaCorrente(123, 12344)
+            };
+
+            contas.Sort();
+
+            foreach (var conta in contas)
+            {
+                Console.WriteLine($"Conta número {conta.Numero}, agência {conta.Agencia}.");
+            }
+
+            Console.ReadLine();
+        }
+
+        static void TestListExtendVarSort()
+        {
+            // Garantindo que o método AdicionarVarios() seja acessado a partir da referência de uma lista, criando uma classe derivada do tipo List.cs e implementando nela o AdicionarVarios()
+            // Derivando uma classe de List<int>, implementando AdicionarVarios(), estabelecendo params como argumento e chamando Add() no escopo, que foi definido em List<int>
+            // Nesse caso de um método pontual, não é necessário criar uma classe derivada para estender o tipo List<T>, posto que em MinhaListaExtendida, somente é gerada uma classe que deriva de List<int>, para compor métodos auxiliares
+            // Resolvido em ListExtensoes.cs
+
+            //public class MinhaListaExtendida : List<int>
+            //{
+            //    public void AdicionarVarios(params int[] itens)
+            //    {
+            //        Add(1);
+            //    }
+            //}
+
+            // ----------------------------------------------------------------------------------------------
+
+            // _Teste de var - Chamando construtor da classe_
+
             //ContaCorrente conta = new ContaCorrente(123, 12345678);
             //GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
             //List<GerenciadorBonificacao> gerenciadores = new List<GerenciadorBonificacao>();
@@ -35,45 +59,66 @@ namespace CSharp.BancoVirtual.SistemaAgencia
             // Com o var é como dizer ao compilador que desejo armazenar o nome do tipo que há na expressão da atribuição no var
             // O compilador entende que "var" refere-se ao tipo atribuído, encontrado à direita do sinal de igual(=)
             // Usar o var deixa o código mais elegante, mais legível e sem repetição de nome de classe (inclusive das genéricas), que possuem nomes mais complicados
-            var conta = new ContaCorrente(123, 12345678);
-            var gerenciador = new GerenciadorBonificacao();
-            var gerenciadores = new List<GerenciadorBonificacao>();
+            // var conta = new ContaCorrente(123, 12345678);
+            // var gerenciador = new GerenciadorBonificacao();
+            // var gerenciadores = new List<GerenciadorBonificacao>();
 
-            conta.Depositar(321);
+            // conta.Depositar(321);
 
-            Console.WriteLine(conta);
+            // Console.WriteLine(conta);
 
-            Console.ReadLine();
-
-            // ----------------------------------------------------------------------------------------------
-
-            Console.WriteLine("_Teste de var - Com outro método_");
-
-            var resultado = SomarVarios(2, 4, 6);
-
-            Console.WriteLine("Teste de somar vários: " + resultado);
-
-            Console.ReadLine();
+            // Console.ReadLine();
 
             // ----------------------------------------------------------------------------------------------
 
-            Console.WriteLine("_Teste de var - Literais da linguagem_");
+            // _Teste de var - Com outro método_
+
+            // var resultado = SomarVarios(2, 4, 6);
+
+            // Console.WriteLine("Teste de somar vários: " + resultado);
+
+            // Console.ReadLine();
+
+            // ----------------------------------------------------------------------------------------------
+
+            // _Teste de var - Literais da linguagem_
 
             // É o mesmo que:    int numIdade = 12;
-            var numIdade = 12;           
-            Console.WriteLine("Teste de var para int: " + numIdade);
+            // var numIdade = 12;           
+            // Console.WriteLine("Teste de var para int: " + numIdade);
 
             // É o mesmo que:    string nomeTeste = "Nome Teste";
-            var nomeTeste = "Nome Teste";
-            Console.WriteLine("Teste de var para srting: " + nomeTeste);
+            // var nomeTeste = "Nome Teste";
+            // Console.WriteLine("Teste de var para srting: " + nomeTeste);
 
-            Console.ReadLine();
+            // Console.ReadLine();
 
             // ----------------------------------------------------------------------------------------------
 
-            // Classe genérica List permite o uso do int como argumento genérico
-            List<int> idades = new List<int>();
+            // _Teste do Sort() - Nomes_
 
+            var nomes = new List<string>()
+            {
+                "Fulano",
+                "Sicrano",
+                "Beltrano",
+                "Ana"
+            };
+
+            // Ordenando a lista de nomes
+            nomes.Sort();
+        
+                    foreach (var nome in nomes)
+                    {
+                        Console.WriteLine(nome);
+                    }
+
+            // ----------------------------------------------------------------------------------------------
+            
+            // Classe genérica List permite o uso do int como argumento genérico
+            // Alterado de: List<int> idades = new List<int>(); | Para: var idades = new List<int>();
+            var idades = new List<int>();
+            
             // É criada uma lista genérica com método genérico que espera um argumento de tipo genérico
             // Add é o Adicionar
             idades.Add(2);
@@ -82,30 +127,39 @@ namespace CSharp.BancoVirtual.SistemaAgencia
             idades.Add(8);
             idades.Add(10);
             idades.Add(12);
-
+            
             // Remover o idades.Add(4)
-            //idades.Remove(4);
-
-            // Array de int utilizando a sintaxe de inicialização de array na qual não é necessário se preocupar com o número inicial de elementos, nem com a adição de item por item no array
+            // idades.Remove(4);
+            
+            // Array de int utilizando a sintaxe de inicialização de array na qual não é necessário se preocupar com o número inicial de elementos, nem     com a     adição de item por item no array
             // idades.AddRange(new int[] { 1, 2, 3, 9 });
-
-            // Facilitando o que foi feito com o AddRange, definindo idades sem a preocupação com a sinaxe de criar array, passar os índices e colocar colchetes ([])
+            
+            // Facilitando o que foi feito com o AddRange, definindo idades sem a preocupação com a sinaxe de criar array, passar os índices e colocar      colchetes    ([])
             // ListExtensoes.AdicionarVarios(idades, 10, 20, 30, 40);
-
+            
             // Otimizando o AdicionarVarios
-            // Em ListExtensoes.cs o primeiro argumento de AdicionarVarios() é a listaDeInteiros, porém ela é o método que representa a classe estendendida, logo está implícito o argumento utilizado, o idades
+            // Em ListExtensoes.cs o primeiro argumento de AdicionarVarios() é a listaDeInteiros, porém ela é o método que representa a classe  estendendida,    logo   está implícito o argumento utilizado, o idades
             // Assim basta preencher a partir do segundo argumento,o params int[] itens
             // Adicionando as idades como argumento de AdicionarVarios()
             // AdicionarVarios() não é um método do tipo List<T> do .NET
-            // AdicionarVarios() é um método de extensão criado em ListExtensoes.cs onde é indicada a extensão do tipo List<T> por meio da palavra reservada this antes do primeiro argumento
-
+            // AdicionarVarios() é um método de extensão criado em ListExtensoes.cs onde é indicada a extensão do tipo List<T> por meio da palavra  reservada    this   antes do primeiro argumento
+            
             // idades.AdicionarVarios(10, 20, 30, 40);
-            // Ao escrever a referência idades, seguida por AdicionarVarios() com seus argumentos, o compilador tranformará esses dados na chamada para o método estático
-            // No argumento, será constatado this, logo nesse caso será colocada a referência usada (idades) como primeiro argumento e os números copiados e colados na sequência:
+            // Ao escrever a referência idades, seguida por AdicionarVarios() com seus argumentos, o compilador tranformará esses dados na chamada para o     método    estático
+            // No argumento, será constatado this, logo nesse caso será colocada a referência usada (idades) como primeiro argumento e os números copiados   e      colados na sequência:
             // ListExtensoes.AdicionarVarios(idades, 10, 20, 30, 40); --> Como na linha 45
-
-            // idades.AdicionarVarios(idades, 10, 20, 30, 40);
-
+            
+            ListExtensoes.AdicionarVarios(idades, 20, 30, 40);
+            
+            // idades.AdicionarVarios(99, -1);
+            
+            // ----------------------------------------------------------------------------------------------
+            
+            // _Teste do Sort() - Números_
+            
+            // Ordenando a lista de idades
+            idades.Sort();
+            
             // Tamanho é o Count, propriedade do .NET responsável pela contagem de itens que compõem a lista
             for (int i = 0; i < idades.Count; i++)
             {
@@ -114,6 +168,7 @@ namespace CSharp.BancoVirtual.SistemaAgencia
 
             Console.ReadLine();
         }
+
 
         static void TestaListaDeObject()
         {
