@@ -34,19 +34,27 @@ namespace CSharp.BancoVirtual.SistemaAgencia
             // contas.Sort(new ComparadorContaCorrentePorAgencia());
 
             // conta => conta.Numero --> É uma expressão lambda
-            IOrderedEnumerable<ContaCorrente> contasOrdenadas =
-                contas.OrderBy(conta => {
-                    if (conta == null)
-                    {
-                        // Retorna as contas nulas antes
-                        // return int.MinValue;
+            // IOrderedEnumerable<ContaCorrente> contasOrdenadas = contas.OrderBy(conta => conta.Numero);
 
-                        // Retorna as contas nulas depois
-                        return int.MaxValue;
-                    }
+            // --------------------------------------------
 
-                    return conta.Numero;
-                });
+            // if (conta == null)
+            //     {
+            //          Retorna as contas nulas depois
+            //          return int.MaxValue;
+            //     }
+            //          return conta.Numero;
+            //     });
+
+            // --------------------------------------------
+
+            // if (conta == null)
+            //     {
+            //          Retorna as contas nulas antes
+            //          return int.MinValue;
+            //     }
+            //          return conta.Numero;
+            //     });                    
 
             // ----------------------------
 
@@ -68,12 +76,54 @@ namespace CSharp.BancoVirtual.SistemaAgencia
 
             // Não imprime as contas nulas
 
+
+            // ---------------------------- contasOrdenadas
+
+            // foreach (var conta in contasOrdenadas)
+            //     {
+            //          if (conta != null)
+            //          {
+            //              Console.WriteLine($"Conta número {conta.Numero}, agência {conta.Agencia}.");
+            //           }
+            //     }
+
+            // IOrderedEnumerable<ContaCorrente> contasOrdenadas = contas.OrderBy(conta => conta.Numero);
+
+            // ---------------------------- listaSemNulos
+
+            // var listaSemNulos = new List<ContaCorrente>();
+            // foreach (var conta in contas)
+            // {
+            //      if (conta != null)
+            //      {
+            //          listaSemNulos.Add(conta);
+            //      }
+
+            // IOrderedEnumerable<ContaCorrente> contasOrdenadas = listaSemNulos.OrderBy(conta => conta.Numero);
+
+            // ---------------------------- contasNaoNulas
+
+            // var contasNaoNulas = contas.Where(conta => conta != null);
+
+            // O IOrderedEnumerable deve ser preenchido dessa forma: public interface IOrderedEnumerable<TElement> : IEnumerable<TElement>, IEnumerable
+
+            // Isso:
+            // IOrderedEnumerable<ContaCorrente> contasOrdenadas = contasNaoNulas.OrderBy<ContaCorrente, int>(conta => conta.Numero);
+
+            // É igual a isso, porém aqui o "ContaCorrente, int" foram inferidos:
+            // IOrderedEnumerable<ContaCorrente> contasOrdenadas = contasNaoNulas.OrderBy(conta => conta.Numero);
+
+            // Aqui fiz o encadeamento do Where: var contasNaoNulas = contas.Where(conta => conta != null);
+            // Com o OrderBy: IOrderedEnumerable<ContaCorrente> contasOrdenadas = contas.OrderBy(conta => conta.Numero);
+            // conta => conta.Numero --> É uma expressão lambda
+            // conta => conta != null --> É uma expressão lambda que retorna booleano
+            var contasOrdenadas = contas
+                .Where(conta => conta != null)
+                .OrderBy(conta => conta.Numero);
+
             foreach (var conta in contasOrdenadas)
             {
-                if (conta != null)
-                {
-                    Console.WriteLine($"Conta número {conta.Numero}, agência {conta.Agencia}.");
-                }
+                Console.WriteLine($"Conta número {conta.Numero}, agência {conta.Agencia}.");
             }
 
             Console.ReadLine();

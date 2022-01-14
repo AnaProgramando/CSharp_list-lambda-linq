@@ -37,17 +37,17 @@ Tive a ideia de compartilhar alguns projetos para quem tem interesse em aprender
 - [X] Uso do mesmo tipo genérico para lista e método
 - [X] Inferido o tipo em uma chamada de método de extensão com argumento genérico
 - [X] Uso do var
-- [ ] Criação de método de extensão
-- [ ] Exploração da sintaxe de inicialização de listas 
-- [ ] Ordenação de lista
-- [ ] Uso do método Sort()
-- [ ] Implementação da interface IComparable em ContaCorrente
-- [ ] Uso do CompareTo()
-- [ ] Definição de lógica padrão para ContaCorrente
-- [ ] Implementação da interface IComparer como argumento
-- [ ] Uso do método de extensão OrderBy() que faz parte do namespace Linq
-- [ ] Recebimento da expressão lambda como argumento em OrderBy()
-- [ ] Uso do método Where()
+- [X] Criação de método de extensão
+- [X] Exploração da sintaxe de inicialização de listas 
+- [X] Ordenação de lista
+- [X] Uso do método Sort()
+- [X] Implementação da interface IComparable em ContaCorrente
+- [X] Uso do CompareTo()
+- [X] Definição de lógica padrão para ContaCorrente
+- [X] Implementação da interface IComparer como argumento
+- [X] Uso do método de extensão OrderBy() que faz parte do namespace Linq
+- [X] Recebimento da expressão lambda como argumento em OrderBy()
+- [X] Uso do método Where()
 
 ## ✍ Referências
 
