@@ -1,7 +1,7 @@
 ![banner_CSharp_list-lambda-linq](https://github.com/AnaProgramando/CSharp_list-lambda-linq/blob/adcfbe1a2ed6cbb7f5f11807e14a2dc4d1386747/banner_CSharp_list-lambda-linq.png)
 ----
 
-<img src="https://img.shields.io/static/v1?label=Status&message=incomplete&color=FFA500&style=for-the-badge"/>
+<img src="https://img.shields.io/static/v1?label=Status&message=complete&color=32CD32&style=for-the-badge"/>
 
 <p align="center"> O curso desse projeto está disponível na Plataforma da <a href="https://www.alura.com.br/" > Alura </a> </p>
 
