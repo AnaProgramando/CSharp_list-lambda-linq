@@ -19,20 +19,61 @@ namespace CSharp.BancoVirtual.SistemaAgencia
             var contas = new List<ContaCorrente>()
             {
                 new ContaCorrente(123, 12341),
+                null,
                 new ContaCorrente(123, 12342),
                 new ContaCorrente(123, 12343),
+                null,
                 new ContaCorrente(123, 12343),
                 new ContaCorrente(123, 1),
-                new ContaCorrente(123, 99999)
+                new ContaCorrente(123, 99999),
+                null
             };
 
-            // contas.Sort();   => Chamar a implementação dada em IComparable
+            // contas.Sort();       --> Chamar a implementação dada em IComparable
 
-            contas.Sort(new ComparadorContaCorrentePorAgencia());
+            // contas.Sort(new ComparadorContaCorrentePorAgencia());
 
-            foreach (var conta in contas)
+            // conta => conta.Numero --> É uma expressão lambda
+            IOrderedEnumerable<ContaCorrente> contasOrdenadas =
+                contas.OrderBy(conta => {
+                    if (conta == null)
+                    {
+                        // Retorna as contas nulas antes
+                        // return int.MinValue;
+
+                        // Retorna as contas nulas depois
+                        return int.MaxValue;
+                    }
+
+                    return conta.Numero;
+                });
+
+            // ----------------------------
+
+            // Imprime as contas nulas
+
+            //foreach (var conta in contasOrdenadas)
+            //{
+            //    if (conta == null)
+            //    {
+            //        Console.WriteLine("Conta nula");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"Conta número {conta.Numero}, agência {conta.Agencia}.");
+            //    }
+            //}
+
+            // ----------------------------
+
+            // Não imprime as contas nulas
+
+            foreach (var conta in contasOrdenadas)
             {
-                Console.WriteLine($"Conta número {conta.Numero}, agência {conta.Agencia}.");
+                if (conta != null)
+                {
+                    Console.WriteLine($"Conta número {conta.Numero}, agência {conta.Agencia}.");
+                }
             }
 
             Console.ReadLine();
